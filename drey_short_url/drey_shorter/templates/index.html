@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="racoussir son lien en quelque seconde">
+        <title>Drey_shorter_url</title>
+        <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.min.css"/>
+       
+<!-- CSS CONTENT-->
+       <style type="text/css">
+            body{
+                min-width: 100vh;
+                text-align: center;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                background-color: #A3E4D7;
+                padding-bottom: 15px;
+            }
+            header{
+                padding: 5px;
+                border-bottom-style: solid;
+                border-color:rgb(37, 187, 142);
+                border-width: 5px;
+            }
+            footer{
+              
+                text-align: center;
+                border-style: solid;
+                border-color: rgb(37, 187, 142);
+                border-width: 5px;
+                font-size: 25px;
+                width: 50%;
+                border-radius: 10px;
+                
+        
+            }
+            h1{
+                font-size: 2.5em;
+                color: white;
+                font-weight: bold;
+                text-decoration: underline;
+                margin: 0 !important;
+                
+            }
+            h2{
+                font-weight: bold;
+                margin: 0% !important;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                color: white;  
+                font-size: 1.5em;
+            
+            }
+
+            form{
+                padding: 20px;
+                margin: auto;
+                color: #FFFF;
+                border-radius: 10px;
+                border-style: solid;
+                border-color: rgb(37, 187, 142);
+                border-width: 5px;
+
+            }
+            input{
+                width: 84vh;
+                height: 50px;
+                border: white;
+                border-style: solid;
+            }
+            h3{
+                padding: 15px;
+                border-style: solid;
+                color: black;
+            }
+            #admin{
+                color: #FFF;
+            }
+
+
+        </style>
+<!-- END OF CSS CONTENT-->
+
+    </head>
+    <header class="bg-primary">
+            <h1>Shorten your link </h1>
+    </header>
+
+    <br>
+    <br>
+
+    <body>
+            <form id="post-form" class="bg-primary col-md-8 mx-auto" >
+                {% csrf_token %} <!-- for synchro-->
+                <div>
+                    <h2>Put your link here : </h2> <p>( ex : https://google.com)</p> 
+                </div>
+                <input id="url_html" type="text" name="url_html">
+                
+                <h2>you can now <button class="btn btn-success" type="submit"> transform </button> your link</h2>
+                <h3 class="bg-light"> </h3>
+            
+            </form>
+
+            <!-- A script for create the new link and show this new link without reload the page-->
+            <script type="text/javascript">
+                $(document).on('submit','#post-form',function(e){
+                e.preventDefault();
+            
+                $.ajax({
+                    type:'POST',
+                    url:'/create',
+                    data:{
+                    link:$('#url_html').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                    },
+                    success: function(data){
+                        $('h3').html("localhost:8000/"+data)
+                    
+                    }
+                });
+                });
+            </script>
+
+        
+    </body>
+    <br>
+    <br>
+    <br>
+    <footer class=" bg-primary col-md-8 mx-auto" > <a id="admin" href="/admin/"> Page admin </a></footer>
+</html>

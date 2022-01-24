@@ -1,0 +1,4 @@
+django
+asgiref
+pytz
+sqlparse
