@@ -36,12 +36,16 @@ The server will start on our localhost at port 8000, so put http://127.0.0.1:800
 
 ## Usage
 
+![image](https://user-images.githubusercontent.com/84905079/151171960-67ff777e-903e-4ca7-99cf-807f3dd2faf2.png)
+
     1) put your link (ex : https://google.com) in the section 
     2) click on the "transform" button.
     3) copy the new link and put this on your navigator
 
 If you want to view all the link that you created you can access at the admin page.
 For that, you have a link at the index.html, or you can juste access with http://127.0.0.1:8000/admin/
+
+![image](https://user-images.githubusercontent.com/84905079/151172045-f26f7772-606f-4be7-9917-a2fe1e74882d.png)
 
 ID for admin page :
 
